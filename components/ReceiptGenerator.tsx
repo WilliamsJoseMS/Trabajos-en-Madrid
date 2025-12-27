@@ -206,7 +206,7 @@ export const ReceiptGenerator: React.FC<ReceiptGeneratorProps> = ({ isOpen, onCl
 
               <div className="border-b-2 border-dashed border-gray-300 mb-4"></div>
 
-              {/* Totals */}
+              {/* Totals - Modified to remove TOTAL and footer */}
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between text-gray-500">
                   <span>Pendiente (PDT):</span>
@@ -216,20 +216,11 @@ export const ReceiptGenerator: React.FC<ReceiptGeneratorProps> = ({ isOpen, onCl
                   <span>Pagado (OK):</span>
                   <span>€{paidAmount.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-xl font-bold mt-4 pt-2 border-t-2 border-gray-900">
-                  <span>TOTAL</span>
-                  <span>€{totalAmount.toFixed(2)}</span>
-                </div>
+                {/* Total and Footer removed as requested */}
               </div>
 
-              <div className="mt-8 text-center">
-                <p className="text-xs text-gray-400">¡Gracias por tu trabajo!</p>
-                <div className="mt-4">
-                  {/* Fake Barcode */}
-                  <div className="h-10 bg-gray-900 w-2/3 mx-auto"></div>
-                  <p className="text-[10px] tracking-[0.5em] mt-1 text-gray-500">FIN-TICKET</p>
-                </div>
-              </div>
+              {/* Blank space below as requested */}
+              <div className="mt-8 flex-1"></div>
               
               {/* Zigzag Bottom Edge */}
               <div 
