@@ -1,0 +1,5 @@
+{
+  "name": "Madrid Jobs",
+  "description": "Una aplicación profesional para llevar el control de días trabajados, calcular ingresos y generar recibos digitales.",
+  "requestFramePermissions": []
+}
