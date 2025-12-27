@@ -9,7 +9,8 @@ import {
   Filter, 
   Trash2, 
   Receipt,
-  Search
+  Search,
+  Sparkles
 } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts';
 import { format, parseISO, startOfMonth, eachDayOfInterval, subMonths } from 'date-fns';
@@ -18,6 +19,7 @@ import { WorkDay, Location, Status } from './types';
 import { StatsCard } from './components/StatsCard';
 import { AddEntryModal } from './components/AddEntryModal';
 import { ReceiptGenerator } from './components/ReceiptGenerator';
+import { AIAnalysisModal } from './components/AIAnalysisModal';
 import { v4 as uuidv4 } from 'uuid';
 
 const STORAGE_KEY = 'madrid_jobs_data_v1';
@@ -27,6 +29,7 @@ function App() {
   const [days, setDays] = useState<WorkDay[]>([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isReceiptModalOpen, setIsReceiptModalOpen] = useState(false);
+  const [isAIModalOpen, setIsAIModalOpen] = useState(false);
   const [filterStatus, setFilterStatus] = useState<'Todos' | Status>('Todos');
   const [defaultRate, setDefaultRate] = useState(100);
 
@@ -114,9 +117,18 @@ function App() {
               <div className="bg-indigo-600 p-2 rounded-lg">
                 <Briefcase className="text-white" size={20} />
               </div>
-              <h1 className="text-xl font-bold text-white tracking-tight">Madrid Jobs</h1>
+              <h1 className="text-xl font-bold text-white tracking-tight hidden sm:block">Madrid Jobs</h1>
+              <h1 className="text-xl font-bold text-white tracking-tight sm:hidden">MJ</h1>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <button 
+                onClick={() => setIsAIModalOpen(true)}
+                className="flex items-center gap-2 bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-600/50 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+              >
+                <Sparkles size={16} />
+                <span className="hidden sm:inline">IA Analista</span>
+                <span className="sm:hidden">IA</span>
+              </button>
               <button 
                 onClick={() => setIsReceiptModalOpen(true)}
                 className="hidden md:flex items-center gap-2 bg-gray-800 text-gray-200 border border-gray-700 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
@@ -129,7 +141,8 @@ function App() {
                 className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-md shadow-indigo-900/20 transition-all active:scale-95"
               >
                 <Plus size={18} />
-                <span>Registrar</span>
+                <span className="hidden sm:inline">Registrar</span>
+                <span className="sm:hidden">Nuevo</span>
               </button>
             </div>
           </div>
@@ -316,6 +329,12 @@ function App() {
         isOpen={isReceiptModalOpen}
         onClose={() => setIsReceiptModalOpen(false)}
         allDays={days}
+      />
+
+      <AIAnalysisModal 
+        isOpen={isAIModalOpen}
+        onClose={() => setIsAIModalOpen(false)}
+        days={days}
       />
     </div>
   );
