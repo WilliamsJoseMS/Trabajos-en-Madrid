@@ -1,20 +1,33 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Madrid Jobs
 
-# Run and deploy your AI Studio app
+Aplicación de gestión financiera y control de trabajos para freelancers, diseñada para facilitar el seguimiento de ingresos, días trabajados y generación de recibos.
 
-This contains everything you need to run your app locally.
+## Características Principales
 
-View your app in AI Studio: https://ai.studio/apps/drive/1J49_45OHN6l_9XxpyYFQdJXGTnDafgXe
+*   **📊 Tablero de Control**: Vista rápida de ingresos pendientes, pagados y desglose por ubicación (Casa vs Empresa).
+*   **📝 Registro de Trabajos**: Agrega entradas individualmente o por lotes (rangos de fechas) para mayor rapidez.
+*   **🧾 Generador de Recibos**: Crea tickets de caja en formato PNG listos para descargar, con opciones de filtrado por mes o rango personalizado.
+*   **💾 Persistencia**: Todos los datos se guardan localmente en el navegador.
 
-## Run Locally
+## Instalación
 
-**Prerequisites:**  Node.js
+### Prerrequisitos
+*   Node.js instalado.
 
+### Pasos
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1.  **Instalar dependencias**
+    ```bash
+    npm install
+    ```
+
+2.  **Ejecutar la aplicación**
+    ```bash
+    npm run dev
+    ```
+
+## Guía de Uso Rápida
+
+1.  **Agregar Trabajos**: Usa el botón "Registrar" (+) para añadir días. Puedes seleccionar "Por Lotes" para añadir múltiples días consecutivos.
+2.  **Gestionar Pagos**: En la lista principal, haz clic en el estado "Pendiente" para marcarlo como "Pagado" (y viceversa).
+3.  **Recibos**: Haz clic en el botón de recibo (móvil) o "Recibo" (escritorio) para generar un comprobante visual.

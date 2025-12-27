@@ -10,7 +10,7 @@ import {
   Trash2, 
   Receipt,
   Search,
-  Sparkles
+  HelpCircle
 } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts';
 import { format, parseISO, startOfMonth, eachDayOfInterval, subMonths } from 'date-fns';
@@ -19,7 +19,7 @@ import { WorkDay, Location, Status } from './types';
 import { StatsCard } from './components/StatsCard';
 import { AddEntryModal } from './components/AddEntryModal';
 import { ReceiptGenerator } from './components/ReceiptGenerator';
-import { AIAnalysisModal } from './components/AIAnalysisModal';
+import { HelpModal } from './components/HelpModal';
 import { v4 as uuidv4 } from 'uuid';
 
 const STORAGE_KEY = 'madrid_jobs_data_v1';
@@ -29,7 +29,7 @@ function App() {
   const [days, setDays] = useState<WorkDay[]>([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isReceiptModalOpen, setIsReceiptModalOpen] = useState(false);
-  const [isAIModalOpen, setIsAIModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [filterStatus, setFilterStatus] = useState<'Todos' | Status>('Todos');
   const [defaultRate, setDefaultRate] = useState(100);
 
@@ -43,7 +43,7 @@ function App() {
         console.error("Failed to parse storage");
       }
     } else {
-      // Empty initialization as requested "sin datos agregados"
+      // Empty initialization
       setDays([]);
     }
   }, []);
@@ -121,13 +121,12 @@ function App() {
               <h1 className="text-xl font-bold text-white tracking-tight sm:hidden">MJ</h1>
             </div>
             <div className="flex items-center gap-2 sm:gap-3">
-              <button 
-                onClick={() => setIsAIModalOpen(true)}
-                className="flex items-center gap-2 bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-600/50 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+              <button
+                onClick={() => setIsHelpModalOpen(true)}
+                className="p-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-full transition-colors"
+                title="Ayuda"
               >
-                <Sparkles size={16} />
-                <span className="hidden sm:inline">IA Analista</span>
-                <span className="sm:hidden">IA</span>
+                <HelpCircle size={20} />
               </button>
               <button 
                 onClick={() => setIsReceiptModalOpen(true)}
@@ -331,10 +330,9 @@ function App() {
         allDays={days}
       />
 
-      <AIAnalysisModal 
-        isOpen={isAIModalOpen}
-        onClose={() => setIsAIModalOpen(false)}
-        days={days}
+      <HelpModal 
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
       />
     </div>
   );
